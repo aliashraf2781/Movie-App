@@ -29,6 +29,19 @@ navBarToggle.addEventListener('click', () => {
   navBarAside.classList.toggle('hide');
   // start nav links animation
   navLinks.forEach((link, index) => {
+    link.addEventListener('click', () => {
+      navBarAside.classList.toggle('show');
+      navBarAside.classList.toggle('hide');
+      bars.classList.toggle('d-none');
+      cancel.classList.toggle('d-none');
+      navLinks.forEach((link, index) => {
+        if (link.style.animation) {
+          link.style.animation = '';
+        } else {
+          link.style.animation = `fadeIn 0.5s ease-in forwards ${index / 7 + 0.25}s`;
+        }
+      });
+    });
     if (link.style.animation) {
       link.style.animation = '';
     } else {
@@ -105,19 +118,22 @@ async function displayMovies(endpoint) {
   items.innerHTML = '';
   movies.forEach(movie => {
     let movieRate = movie.vote_average;
+    let movieOverview = movie.overview;
+    // first 50 words of the overview
+    movieOverview = movieOverview.split(' ').slice(0, 35).join(' ') + ' Read More...';
     movieRate = movieRate.toString().slice(0, 3);
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie-card');
     movieCard.innerHTML = `
-    <div class="item col-md-4">
+    <div class="item col-lg-4 col-md-6 col-sm-12 flex-grow-1">
       <div class="overflow-hidden">
         <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
       </div>
-      <div class="text">
-        <h3 class = "fs-1">${movie.title}</h3>
-        <p>${movie.overview}</p>
+      <div class="text px-4">
+        <h3 class = "text-center fw-bold">${movie.title}</h3>
+        <p class="my-1">${movieOverview}</p>
         <p>Release Date: ${movie.release_date}</p>
-        <p class='rate border border-2 border-success d-flex justify-content-center align-items-center'><span>${movieRate}</span></p>
+        <p class='rate border border-3 border-success d-flex justify-content-center align-items-center'><span>${movieRate}</span></p>
       </div>
     </div>
     `;

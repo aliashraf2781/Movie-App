@@ -1,12 +1,15 @@
 *{
   box-sizing: border-box;
+  transition: all 0.5s ease-in;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -ms-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
 }
 
 body{
-  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f0f8ff !important;
 }
 
 ul{
@@ -116,7 +119,6 @@ nav{
 }
 .item{
   position: relative;
-  /* margin: auto; */
   overflow: hidden !important;
   img{
     z-index: -1;
