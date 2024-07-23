@@ -120,7 +120,7 @@ async function displayMovies(endpoint) {
     let movieRate = movie.vote_average;
     let movieOverview = movie.overview;
     // first 50 words of the overview
-    movieOverview = movieOverview.split(' ').slice(0, 35).join(' ') + ' Read More...';
+    movieOverview = movieOverview.split(' ').slice(0, 35).join(' ') + '...';
     movieRate = movieRate.toString().slice(0, 3);
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie-card');
